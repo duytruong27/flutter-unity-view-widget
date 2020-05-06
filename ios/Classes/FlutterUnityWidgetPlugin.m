@@ -70,6 +70,8 @@
 - (void)onMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     if ([[call method] isEqualToString:@"postMessage"]) {
         [self postMessage:call result:result];
+    } else if ([[call method] isEqualToString:@"dispose"]) {
+        NSLog(@"Dispose called");
     } else {
         result(FlutterMethodNotImplemented);
     }

@@ -10,6 +10,7 @@
 static const int constsection = 0;
 
 bool unity_inited = false;
+static bool player_created = false;
 
 // keep arg for unity init from non main
 int g_argc;
@@ -141,10 +142,12 @@ static BOOL _isUnityReady = NO;
         _isUnityReady = YES;
         completed();
     }];
-
-    if (UnityIsInited()) {
+    
+    if (UnityIsInited() || player_created) {
         return;
     }
+    
+    player_created = true;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         UIApplication* application = [UIApplication sharedApplication];
